@@ -8,8 +8,14 @@ import './styles/styles.css'; //Webpack can import CSS files too!
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 
+import configureStore from './store/configureStore';
+
+// konfiguracija Store, ucitava potrebme akcije
+const store = configureStore();
+
+
 // metoda koja prikazuje app, Provider wrap-uje elemente
-  /*app se prikazuje u elementu koji ima id-app,*/
+/*app se prikazuje u elementu koji ima id-app,*/
 render(
     <Provider>
         <Router history={browserHistory} routes={routes} />
