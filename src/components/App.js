@@ -10,6 +10,11 @@ class App extends React.Component {
             <div className="container-fluid">
                 <Header />
                 {this.props.children}
+                {/*
+                this, oznacava da je App, drugim recima koristi se da ne ponavlja ime komponente kojoj se pristupa
+                props-property, sadrzaj aplikacije,
+                children , pristupa komponentama koje su ispod (Parent) nje.
+                */}
             </div>
         );
     }
