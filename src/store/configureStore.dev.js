@@ -7,7 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 // kreiran Store koji sadrzi reducere, stanje i middleware koji koristi thunk biblioteku
 /* thunk:
         prosledjuje akcije
-*/ 
+*/
 /*
 reduxImmutableStateInvariant sluzi za stata koji je ne promenljiv
 */

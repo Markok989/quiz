@@ -27,10 +27,10 @@ class Answer extends React.Component {
                     id: this.props.id,
                     questionId: this.props.questionId,
                     isTrue: this.props.isTrue
-                })
+                });
     }
 
-// update-uje stanje , koristeci akciju updateAnswerSuccess
+    // update-uje stanje , koristeci akciju updateAnswerSuccess
     componentDidUpdate() {
         this.props.action.updateAnswerSuccess({
             questionId: this.state.questionId,
@@ -39,14 +39,14 @@ class Answer extends React.Component {
             isTrue: this.state.isTrue
         });
     }
-// hendler za promenu stanja, answer pokazuje vaule(vrednost)
+    // hendler za promenu stanja, answer pokazuje vaule(vrednost)
     handleChange(event) {
         this.state({ answer: event.target.value });
     }
 
     render() {
         // konstantno (elementi) koji se nalaze u Answer
-        const { id, remmoveAnswer, questionId, setAnswerOnTrue, isTrue } = this.props;
+        const { id, removeAnswer, questionId, setAnswerOnTrue, isTrue } = this.props;
 
         return (
             <div className="panel panel-default nested-fields">
@@ -63,30 +63,30 @@ class Answer extends React.Component {
                         label="Answer"
                         value={this.state.answer}
                         onChange={this.handleChange} />
-                        {
-                            /*
-                             input sa atributima,
-                             onClick primenjuje removeAnswer
-                             */
-                        }
+                    {
+                        /*
+                         input sa atributima,
+                         onClick primenjuje removeAnswer
+                         */
+                    }
                     <input
                         type="submit"
                         value="Remove Answer"
                         className="btn btn-default"
                         onClick={() => removeAnswer(id)} />
-                        {
-                            /*
-                             dugme,
-                             onClick primenjuje setAnswerOnTrue,
-                             u ovom slucaju prikazuje dva className, u slucaju da je tacno pokazuje success, u slucaju da je pogresno danger,
+                    {
+                        /*
+                         dugme,
+                         onClick primenjuje setAnswerOnTrue,
+                         u ovom slucaju prikazuje dva className, u slucaju da je tacno pokazuje success, u slucaju da je pogresno danger,
 
-                             span,
-                             takodje se primenjuje dva className, za tacno ok-circle, za pogresno remove-circle
+                         span,
+                         takodje se primenjuje dva className, za tacno ok-circle, za pogresno remove-circle
 
-                             na kraju se ispisuje poruka,
-                             isTrue, ako je tacno izbacuje poruku Answer is true, u suprotonom, Answer is false
-                             */
-                        }
+                         na kraju se ispisuje poruka,
+                         isTrue, ako je tacno izbacuje poruku Answer is true, u suprotonom, Answer is false
+                         */
+                    }
                     <button type="button"
                         onClick={() => setAnswerOnTrue(id)}
                         className={isTrue ? "btn btn-success" : "btn btn-danger"}>
@@ -99,6 +99,8 @@ class Answer extends React.Component {
     }
 
 }
+
+
 
 // mapDispatchToProps vezuje komponentu za akciju i koja se akcija primenjuje, 
 // answeractions je akcija koja se koristi, a dispatch je doprema

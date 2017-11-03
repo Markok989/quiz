@@ -17,6 +17,9 @@ const Header = () => {
                     <NavItem eventKey={1}>
                         <IndexLink to="/" activeClassName="active">Home</IndexLink>
                     </NavItem>
+                    <NavItem eventKey={3}>
+                        <Link to="/questions" activeClassName="active">Make a Quiz</Link>
+                    </NavItem>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

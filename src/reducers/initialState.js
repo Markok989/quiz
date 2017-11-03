@@ -1,3 +1,5 @@
 export default {
-    answers: []
-}
+    answers: [],
+    questions: [],
+    quizzes: []
+};

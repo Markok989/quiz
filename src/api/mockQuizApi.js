@@ -121,22 +121,23 @@ class QuizAPI {
             }, delay);
         });
     }
-}
 
-// metoda saveQuiz, za snimanje kviza, uslov ako Title kviza ima manje od jednog slova, izbacuje poruku sa greskom
-static saveQuiz(quiz){
-    quiz = Object.assign({}, quiz);
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const minQuizTitleLength = 1;
-            if (quiz.title.length < minQuizTitleLength) {
-                reject(`Title must be at least${minQuizTitleLength} characters.`);
-            }
-            quizzes.push(quiz);
-            resolve(quiz);
-        }, delay);
-    })
 
+    // metoda saveQuiz, za snimanje kviza, uslov ako Title kviza ima manje od jednog slova, izbacuje poruku sa greskom
+    static saveQuiz(quiz) {
+        quiz = Object.assign({}, quiz); // to avoid manipulating object passed in.
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const minQuizTitleLength = 1;
+                if (quiz.title.length < minQuizTitleLength) {
+                    reject(`Title must be at least ${minQuizTitleLength} characters.`);
+                }
+
+                quizzes.push(quiz);
+                resolve(quiz);
+            }, delay);
+        });
+    }
 }
 
 
