@@ -8,7 +8,7 @@ const Header = () => {
         <Navbar inverse collapseOnSelect>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <IndexLink to="/" activeClassName="active">React Quiz Web Site</IndexLink>
+                    <IndexLink to="/" activeClassName="active">React-Quiz-Web-Site</IndexLink>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
@@ -19,6 +19,9 @@ const Header = () => {
                     </NavItem>
                     <NavItem eventKey={3}>
                         <Link to="/questions" activeClassName="active">Make a Quiz</Link>
+                    </NavItem>
+                    <NavItem eventKey={5}>
+                        <Link to="/quizzes" activeClassName="active">Quiz</Link>
                     </NavItem>
                 </Nav>
             </Navbar.Collapse>

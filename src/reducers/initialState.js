@@ -1,5 +1,6 @@
 export default {
     answers: [],
     questions: [],
-    quizzes: []
+    quizzes: [],
+    ajaxCallsInProgress: 0
 };

@@ -11,8 +11,6 @@ import configureStore from './store/configureStore';
 import { loadQuiz } from './actions/quizActions';
 
 
-
-
 // konfiguracija Store, ucitava potrebme akcije
 const store = configureStore();
 
@@ -22,8 +20,9 @@ store.dispatch(loadQuiz());
 
 // metoda koja prikazuje app, Provider wrap-uje elemente
 /*app se prikazuje u elementu koji ima id-app,*/
+//Provider component attach app to redux-store
 render(
-    <Provider store={stop}>
+    <Provider store={store}>
         <Router history={browserHistory} routes={routes} />
     </Provider>,
     document.getElementById('app')

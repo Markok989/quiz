@@ -1,16 +1,20 @@
 import React, { PropTypes } from 'react';
+import Question from './Question';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as quizActions from '../../actions/quizActions';
 import TextInput from '../common/TextInput';
 import toastr from 'toastr';
-import Question from './Question';
-import * as quizActions from '../../actions/quizActions';
 
 class QuestionForm extends React.Component {
 
     constructor(props, context) {
         super(props, context);
-
+        this.addQuestion = this.addQuestion.bind(this);
+        this.removeQuestion = this.removeQuestion.bind(this);
+        this.id = this.id.bind(this);
+        this.createQuiz = this.createQuiz.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 
         // stanje pri ucitavanju komponente
         this.state = {
@@ -22,9 +26,7 @@ class QuestionForm extends React.Component {
 
     // hendler kom je podeseno stanje na vrednost title(Naslova)
     handleChange(event) {
-        this.setState({
-            title: event.target.value
-        });
+        this.setState({ title: event.target.value });
     }
 
     // render metoda koja pokazuje sadrzaj komponente
@@ -58,10 +60,10 @@ class QuestionForm extends React.Component {
                         */
                     }
                     {
-                        (this.state.questions.length) ? this.state.questions.map((question, i) =>
-                            <Question
-                                key={question.id}
-                                removeQuestion={this.removeQuestion} />) : <span>Curently 0 Questions</span>
+                        (this.state.questions.length) ? this.state.questions.map(
+                            (question, i) =>
+                                <Question key={question.id} id={question.id} removeQuestion={this.removeQuestion} />
+                        ) : <span>Currently 0 Questions </span>
                     }
                 </div>
                 {
@@ -73,7 +75,7 @@ class QuestionForm extends React.Component {
                     type="submit"
                     value="Add Question"
                     className="btn btn-default"
-                    onClick={this.handleChange} />
+                    onClick={this.addQuestion} />
                 <div className="form-actions">
                     <hr />
                     {
@@ -135,16 +137,14 @@ class QuestionForm extends React.Component {
             questions: []
         };
         qa.forEach(question => {
-            let answers = an.filter(answer => answer.question.questionId === question.id);
+            let answers = an.filter(answer => answer.questionId === question.id);
 
             // Uvek moramo da posaljemo kopiju objekta od props-a i state-a ...
-            console.log(answers, " is reducers ");
+            //console.log(answers, " is reducers ");
 
             let qs = Object.assign({}, question);
             qs.answers = [...answers];
-
-            quiz.questions.push(qs);
-            console.log(quiz);
+            // console.log(quiz);
         });
         return quiz;
     }
@@ -156,18 +156,20 @@ class QuestionForm extends React.Component {
     // kroz akciju saveQuiz se krira kviz i izbacuje poruka kroz toaster (stilizovan prikaz) da je uspesno odradjeno,
     // u suprotonom prikazuje gresku
     createQuiz() {
-        console.log("kreiranje kviza");
+        console.log("udjem ovde");
         let answers = this.props.answers;
         let questions = this.props.questions;
-        let quizTitle = this.props.quizTitle;
+        let quizTitle = this.state.title;
         let data = this.prepareDataForRequest(quizTitle, questions, answers);
 
         let json = JSON.stringify(data);
-
-        this.props.actions.saveQuiz(data).then(() => { toastr.success("sacuvano") })
+        console.log(json);
+        this.props.actions.saveQuiz(data).then(() => {
+            toastr.success("zavrseno cuvanje");
+        })
             .catch(error => {
                 toastr.error(error);
-                console.log("greske prilikom cuvanja quiz-a");
+                // console.log("greske prilikom cuvanja quiz-a");
             });
     }
 }
@@ -192,3 +194,4 @@ function mapDispatchToProps(dispatch) {
 
 // connect za povezivanje funkcija mapStateToProps i mapDispatchToProps za ovu komponentu
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionForm);
+

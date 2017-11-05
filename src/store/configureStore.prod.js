@@ -6,10 +6,10 @@ import thunk from 'redux-thunk';
 /* thunk:
         omogucava da napisanu akciju vrati funkciju u mesto akcije, i prosledjuje akciju po zadatim uslovima
 */
-export default function configureStore(initalState) {
+export default function configureStore(initialState) {
     return createStore(
         rootReducer,
-        initalState,
+        initialState,
         applyMiddleware(thunk)
     );
 }

@@ -35,7 +35,6 @@ export function saveQuiz(quiz) {
     return function (dispatch, getState) {
         dispatch(beginAjaxCall());
         return quizApi.saveQuiz(quiz).then(quiz => {
-            //quiz.id ? dispatch(updateQuizSuccess(quiz)) :
             dispatch(createQuizSuccess(quiz));
         }).catch(error => {
             dispatch(ajaxCallError(error));

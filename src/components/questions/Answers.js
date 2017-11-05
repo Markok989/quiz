@@ -18,6 +18,7 @@ class Answer extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+
     // renderuje komponentu ako je state.id===(striktno) '' kao i state.questionId==='', 
     // i prikazuje novo stanje
     componentWillMount() {
@@ -27,21 +28,27 @@ class Answer extends React.Component {
                     id: this.props.id,
                     questionId: this.props.questionId,
                     isTrue: this.props.isTrue
-                });
+                }
+            );
     }
 
     // update-uje stanje , koristeci akciju updateAnswerSuccess
     componentDidUpdate() {
-        this.props.action.updateAnswerSuccess({
+        this.props.actions.updateAnswerSuccess({
             questionId: this.state.questionId,
             id: this.state.id,
-            label: this.state.label,
-            isTrue: this.state.isTrue
+            label: this.state.answer,
+            isTrue: this.props.isTrue
         });
     }
+
     // hendler za promenu stanja, answer pokazuje vaule(vrednost)
     handleChange(event) {
-        this.state({ answer: event.target.value });
+        this.setState(
+            {
+                answer: event.target.value
+            }
+        );
     }
 
     render() {
@@ -106,7 +113,7 @@ class Answer extends React.Component {
 // answeractions je akcija koja se koristi, a dispatch je doprema
 function mapDispatchToProps(dispatch) {
     return {
-        action: bindActionCreators(answerActions, dispatch)
+        actions: bindActionCreators(answerActions, dispatch)
     };
 }
 

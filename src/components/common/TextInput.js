@@ -5,17 +5,19 @@ const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
   // koji se uvecava za prazan string i "has-error"
   let wrapperClass = 'form-group';
   if (error && error.length > 0) {
-    wrapperClass += " " + "has-error";
+    wrapperClass += " " + 'has-error';
   }
 
   return (
     <div className={wrapperClass}>
       <label htmlFor={name}>{label}</label>
       <div className="field">
-        {/*
+        {
+          /*
         polje za unos sa atributima, type: tip(tekst), name: ime, className: bootstrap stil, placeholder: prikazuje default tekst na elementu
         value: vrednost elementa, onChangde: funkcija koja se prikazuje na promenu
-        */}
+        */
+        }
         <input
           type="text"
           name={name}
@@ -23,13 +25,13 @@ const TextInput = ({ name, label, onChange, placeholder, value, error }) => {
           placeholder={placeholder}
           value={value}
           onChange={onChange} />
-        {/*
+        {
+          /*
         kad se javi greska okida se div sa alert karakteristikama (crveno upozorenje)
         i ispisuje se greska 
-        */}
-        {error && <div className="alert alert-danger">
-          {error}
-        </div>}
+        */
+        }
+        {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
   );
@@ -43,6 +45,6 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   error: PropTypes.string
-}
+};
 
 export default TextInput;

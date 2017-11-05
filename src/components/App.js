@@ -10,17 +10,20 @@ class App extends React.Component {
             <div className="container-fluid">
                 <Header />
                 {this.props.children}
-                {/*
-                this, oznacava da je App, drugim recima koristi se da ne ponavlja ime komponente kojoj se pristupa
-                props-property, sadrzaj aplikacije,
-                children , pristupa komponentama koje su ispod (Parent) nje.
-                */}
+                {
+                    /*
+                    this, oznacava da je App, drugim recima koristi se da ne ponavlja ime komponente kojoj se pristupa
+                    props-property, sadrzaj aplikacije,
+                    children , pristupa komponentama koje su ispod (Parent) nje.
+                    */
+                }
             </div>
         );
     }
 }
 
 // testiranje, children treba da bude objekat, ako je nekog drugog tipa , prikazuje se greska 
+
 App.propTypes = {
     children: PropTypes.object.isRequired
 };

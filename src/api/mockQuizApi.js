@@ -110,7 +110,7 @@ const generateId = (quiz) => {
     return (
         replaceAll(quiz.title, ' ', '-')
     );
-}
+};
 
 // Klasa QuizAPI, vraca novi Promise, tako sto vraca novo (klonirani) kreirani objekat, sa zakasnjenjem (delay)
 class QuizAPI {
@@ -138,6 +138,7 @@ class QuizAPI {
             }, delay);
         });
     }
+
 }
 
 
